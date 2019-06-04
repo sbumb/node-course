@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Help</title>
+    <link rel="icon" href="/img/weather.png">
+    <link rel="stylesheet" href="/css/styles.css">
+</head>
+
+<body>
+    <div class="main-content">
+        {{>header}}
+        <p>Step 1: Open the Microsoft Store and install "Ubuntu" (this is a Linux subsystem)</p>
+        <p>Step 2: Enter/create the proxy sudoers file by typing the command: sudo vim /etc/sudoers.d/http_proxy</p>
+        <p>Step 3: Enter the following into the file by pressing 'i'. Ensure that there are no typos, if there are then
+            the sudoers file is corrupted and Ubuntu will need to be reinstalled:
+            Defaults evn_keep += "http_proxy https_proxy"</p>
+
+        <p>Step 4: Change the access permissions of the file system object:
+            sudo chmod 440 /etc/sudoers.d/http_proxy</p>
+        <p>Step 5: Run the exports by typing the following commands:</p>
+        <p>export http_proxy="http://gatekeeper.mitre.org:80"</p>
+        <p>export https_proxy=$http_proxy</p>
+        <p>Once this is complete full access to the Linux subsystem will be granted.</p>
+
+
+        <p>If you're running node you will also have to do the following:</p>
+        <p>npm config set https-proxy "http://gatekeeper.mitre.org:80/"</p>
+        <p>npm config set proxy "http://gatekeeper.mitre.org:80/"</p>
+        <p>npm config set strict-ssl false</p>
+        <p>set NODE_TLS_REJECT_UNAUTHORIZED=0</p>
+    </div>
+    {{>footer}}
+</body>
+
+</html>
